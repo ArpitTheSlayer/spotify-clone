@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-family: "Roboto";
+
+  --first-bg-color: #000000;
+  --second-bg-color: #121212;
+  --third-bg-color: #343434;
+  --first-fg-color: #ffffff;
+  --second-fg-color: #aaaaaa;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--third-bg-color);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--first-fg-color);
+  border-radius: 1rem;
+}
+
+body {
+  background-color: var(--first-bg-color);
+  color: var(--first-fg-color);
+  font-family: var(--font-family, serif);
+  display: flex;
+  gap: 1rem;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.solid-icon,
+.stroke-icon {
+  aspect-ratio: 1;
+  width: 1.5rem;
+  color: var(--first-fg-color);
+  fill: none;
+}
+
+.solid-icon {
+  color: var(--first-bg-color);
+  fill: var(--first-fg-color);
+}
+
+.left-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.right-container {
+  flex: 4;
+  background-color: var(--second-bg-color);
+  border-radius: 0.25rem;
+  position: relative;
+}
+
+.top-container,
+.bottom-container {
+  background-color: var(--second-bg-color);
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.top-container div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.bottom-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.your-library {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  font-size: 0.7rem;
+  color: var(--second-fg-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigation-bar {
+  background-color: var(--third-bg-color);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigators button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sign-buttons :first-child {
+  background-color: transparent;
+  color: var(--second-fg-color);
+  border: none;
+  font-weight: bold;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.sign-buttons :last-child {
+  background-color: var(--first-fg-color);
+  color: var(--first-bg-color);
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+.play-bar {
+  background-color: var(--third-bg-color);
+  padding: 0.5rem;
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-buttons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.songs {
+  height: 60vh;
+  overflow-y: scroll;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--third-bg-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.song span {
+  flex: 1;
+}
+
+.play-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+}
+
+.play-buttons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
