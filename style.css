@@ -144,25 +144,69 @@ body {
 
 .play-bar {
   background-color: var(--third-bg-color);
-  padding: 0.5rem;
+  padding: 1rem;
   position: absolute;
   left: 0.5rem;
   right: 0.5rem;
   bottom: 0.5rem;
   border-radius: 0.5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.song-info,
+.control-buttons,
+.song-time {
+  flex: 1;
+}
+
+.song-info {
+  word-break: break-all;
+}
+
+.song-time {
+  text-align: right;
 }
 
 .control-buttons {
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .control-buttons button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.seek-bar {
+  border: 1px solid var(--first-fg-color);
+  width: 100%;
+  position: relative;
+}
+
+.seek-bar .circle {
+  aspect-ratio: 1;
+  width: 1rem;
+  position: absolute;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--first-fg-color);
+  transition: left 0.5s;
+  cursor: grab;
 }
 
 .songs {
@@ -197,5 +241,9 @@ body {
 .play-buttons button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
+}
+
+.play-buttons span {
   cursor: pointer;
 }
