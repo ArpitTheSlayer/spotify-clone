@@ -1,7 +1,11 @@
 const songsElement = document.querySelector(".songs");
 const songInfoElement = document.querySelector(".song-info");
 const songTimeElement = document.querySelector(".song-time");
-const playButton = document.querySelector(".play-button");
+const playButtonElement = document.querySelector(".play-button");
+const circleElement = document.querySelector(".circle");
+const seekbarElement = document.querySelector(".seek-bar");
+const hamburgerIconElement = document.querySelector(".hamburger-icon");
+const crossIconElement = document.querySelector(".cross-icon");
 const songs = [];
 let currentSong = new Audio();
 
@@ -95,7 +99,7 @@ const getSongs = async () => {
 const songPlayPauseFunction = () => {
   if (currentSong.paused) {
     currentSong.play();
-    playButton.innerHTML = `<svg
+    playButtonElement.innerHTML = `<svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           class="stroke-icon"
@@ -117,7 +121,7 @@ const songPlayPauseFunction = () => {
         </svg>`;
   } else {
     currentSong.pause();
-    playButton.innerHTML = `<svg
+    playButtonElement.innerHTML = `<svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               class="stroke-icon"
@@ -138,18 +142,42 @@ const songPlayPauseFunction = () => {
 };
 
 const secondsToDuration = (time) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  // TODO: add leading zero
-  return `${minutes.toString().padStart(2, "0")}:${seconds}`;
+  let minutes = Math.floor(time / 60);
+  let seconds = Math.floor(time % 60);
+  if (isNaN(time)) {
+    return "00:00";
+  }
+  if (minutes < 10) {
+    minutes = minutes.toString().padStart(2, "0");
+  }
+  if (seconds < 10) {
+    seconds = seconds.toString().padStart(2, "0");
+  }
+  return `${minutes}:${seconds}`;
 };
 
 getSongs();
 
-playButton.addEventListener("click", songPlayPauseFunction);
+playButtonElement.addEventListener("click", songPlayPauseFunction);
 
 currentSong.addEventListener("timeupdate", () => {
   const currentTime = secondsToDuration(currentSong.currentTime);
   const currentDuration = secondsToDuration(currentSong.duration);
   songTimeElement.innerHTML = `${currentTime} / ${currentDuration}`;
+  circleElement.style.left =
+    (currentSong.currentTime / currentSong.duration) * 100 + "%";
+});
+
+seekbarElement.addEventListener("click", (e) => {
+  const percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+  circleElement.style.left = percent + "%";
+  currentSong.currentTime = (currentSong.duration * percent) / 100;
+});
+
+hamburgerIconElement.addEventListener("click", () => {
+  document.querySelector(".left-container").style.left = 0;
+});
+
+crossIconElement.addEventListener("click", () => {
+  document.querySelector(".left-container").style.left = "-100%";
 });
