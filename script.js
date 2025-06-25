@@ -6,6 +6,9 @@ const circleElement = document.querySelector(".circle");
 const seekbarElement = document.querySelector(".seek-bar");
 const hamburgerIconElement = document.querySelector(".hamburger-icon");
 const crossIconElement = document.querySelector(".cross-icon");
+const previousButtonElement = document.querySelector(".previous-button");
+const nextButtonElement = document.querySelector(".next-button");
+const volumeRangeElement = document.querySelector(".volume-range");
 const songs = [];
 let currentSong = new Audio();
 
@@ -156,6 +159,16 @@ const secondsToDuration = (time) => {
   return `${minutes}:${seconds}`;
 };
 
+const findSongIndex = () => {
+  let songIndex;
+  songs.forEach((song, index) => {
+    if (currentSong.src === song.href) {
+      songIndex = index;
+    }
+  });
+  return songIndex;
+};
+
 getSongs();
 
 playButtonElement.addEventListener("click", songPlayPauseFunction);
@@ -180,4 +193,34 @@ hamburgerIconElement.addEventListener("click", () => {
 
 crossIconElement.addEventListener("click", () => {
   document.querySelector(".left-container").style.left = "-100%";
+});
+
+previousButtonElement.addEventListener("click", () => {
+  let songIndex = findSongIndex();
+
+  if (songIndex > 0) {
+    currentSong.src = songs[songIndex - 1].href;
+    songInfoElement.innerHTML = songs[songIndex - 1].innerHTML.replace(
+      ".mp3",
+      ""
+    );
+    songPlayPauseFunction();
+  }
+});
+
+nextButtonElement.addEventListener("click", () => {
+  let songIndex = findSongIndex();
+
+  if (songIndex < songs.length - 1) {
+    currentSong.src = songs[songIndex + 1].href;
+    songInfoElement.innerHTML = songs[songIndex + 1].innerHTML.replace(
+      ".mp3",
+      ""
+    );
+    songPlayPauseFunction();
+  }
+});
+
+volumeRangeElement.addEventListener("change", (e) => {
+  currentSong.volume = parseInt(e.target.value) / 100;
 });
