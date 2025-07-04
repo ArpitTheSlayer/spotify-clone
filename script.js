@@ -207,6 +207,8 @@ const displayAlbums = async () => {
 
 if (location.hostname === "127.0.0.1") {
   link = "http://127.0.0.1:3000/spotify-clone/songs";
+} else if (location.hostname === "spotify-clone4.netlify.app") {
+  link = "https://spotify-clone4.netlify.app/songs";
 } else {
   link = "https://arpittheslayer.github.io/spotify-clone/songs";
 }
